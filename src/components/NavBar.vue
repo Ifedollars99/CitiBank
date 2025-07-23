@@ -206,7 +206,7 @@
     <!-- Mobile Sidebar -->
     <transition name="slide">
       <div v-if="isSidebarOpen" id="mobile-sidebar"
-        class="fixed top-0 left-0 w-full h-auto bg-white shadow-lg z-40 p-6 transition-transform duration-300 mt-40 lg:hidden gap-3">
+        class=" top-0 left-0 w-full h-auto bg-white shadow-lg z-40 p-6 transition-transform duration-300 lg:hidden gap-3">
         <div class="gap-3" >
         <div class="flex justify-between items-center" >
         <h2 class=" font-bold mt-4 text-xl text-blue-950">Credit Cards</h2>
@@ -284,6 +284,7 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+
 /* Sidebar transition */
 .slide-enter-from {
   transform: translateX(-100%);

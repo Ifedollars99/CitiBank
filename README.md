@@ -1,44 +1,55 @@
-## ✅ MyProjectName
-This project is name is called Ifedollars Portfolio.
+# ✅ Citibank Clone – Vue 3
 
-# Portolio 
-![Weather](./public/images/ife8.png)
+A responsive, frontend-only clone of the Citibank login and 2FA flow.  
+Built for a job trial — and a perfect demonstration of Vue mastery
 
+![Citibank Clone](./public/images/citi.png)
 
-# Summary
-A bold, modern portfolio showcasing my frontend skills, design sense, and real-world projects. Built with Vue.js and Tailwind CSS, it reflects my style, attention to detail, and passion for building websites that stands out.
+---
+
+## 📌 Summary
+
+This project replicates a modern banking login experience with a secure-looking 2FA step — using only frontend tools.  
+It includes validation, form handling, and a clean UI, optimized for both desktop and mobile devices.
+
+---
 
 ## ✨ Features
-The portfolio includes the following powerful and polished features:
 
-📍 Location Search
-Autocomplete-enabled city search with worldwide coverage and precise weather details
+- ✅ Login Form with Validation
+- ✅ 2FA Verification Code Flow (via **Formspree**)
+- ✅ Realistic Frontend-only UX
+- ✅ Persistent form state with LocalStorage
+- ✅ Fully Responsive Design (Mobile ➜ Desktop)
+- ✅ Route-based navigation with Vue Router
 
-🌤️ Current Conditions
-Displays real-time temperature, feels-like, humidity, wind speed, and visibility
+---
 
-📡 Live Updates
-Automatically refreshes data to keep conditions up to date
 
-🌅 Sunrise & Sunset Times
-Elegant display of golden hour and daily transition moments
+## 🧠 Challenge Faced & Solution
 
-🌡️ Air Quality Index (AQI)
-PM2.5 levels shown with intuitive color coding for quick health reference
+**Problem:**  
+At first, I set up the 2FA verification code to automatically send after login — but this caused issues when users had no email filled in or tried signing out quickly. It also triggered unwanted API calls.
 
-📱 Fully Responsive Design
-Optimized layout that adapts seamlessly to mobile, tablet, and desktop screens
+**Solution:**  
+I refactored the logic to manually trigger the Formspree email only **after verifying the email field is filled** and only when the user clicks a "Send Code" button.  
+This ensured smoother UX and avoided unnecessary API hits — a more scalable and user-friendly solution.
+
+---
 
 ## 🛠️ Technologies Used
 
-| Category        | Technologies                          |
-|-----------------|---------------------------------------|
-| 🖥️ Frontend     | Vue 3, Tailwind CSS, Hero Icons       |
-| 🎨 Styling      | Tailwind CSS, Custom Gradients, AOS   |
-| 🚀 Build Tools  | 	Vite                                |
-| 🧠 State Mgm    | VueUse                                | 
-| 💌 Form Handlin | Formspree(for contact form submissions)|
-| 🌍 Deployment   | Vercel                                 |
+| Category        | Technologies                             |
+|----------------|------------------------------------------|
+| 🖥️ Frontend     | Vue 3, Vue Router, `<script setup>`      |
+| 🎨 Styling      | Tailwind CSS, Hero Icons, AOS            |
+| 📦 Build Tools  | Vite                                     |
+| 🧠 State Mgmt   | VueUse (`useDark`, `useToggle`, etc.)    |
+| 💌 Form Handling| Formspree (for sending email verification codes) |
+| 🌍 Deployment   | Vercel                                   |
+
+---
+
 
 ## 🚀 Installation
 

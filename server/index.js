@@ -141,5 +141,4 @@ app.listen(PORT, () => {
   console.log(`📊 Database file: ${filePath}`);
 });
 
-
-export default app;
+ 

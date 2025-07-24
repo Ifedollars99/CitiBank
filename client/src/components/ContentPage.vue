@@ -3,7 +3,8 @@
         :style="{ backgroundImage: 'url(https://images.unsplash.com/photo-1619252584172-a83a949b6efd?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)' }">
 
         <!-- first col  -->
-        <div  data-aos="fade-up" data-aos-duration="4000" class="flex flex-col gap-5 items-center md:items-start md:mt-14 w-full md:w-auto">
+        <div  data-aos="fade-up" data-aos-duration="4000"
+         class="flex flex-col gap-5 items-center md:items-start md:-mt-10 w-full md:w-auto">
             <h1 class="font-normal text-xl text-gray-500">CITI® PERSONAL LOAN</h1>
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800">Manage the Unexpected with a
                 Loan</h1>
@@ -20,8 +21,8 @@
         </div>
 
         <!-- second col  -->
-        <div class="mt-10 md:mt-16 w-full md:w-auto flex justify-center">
-            <img class="h-auto max-h-[600px] md:max-h-[580px] w-auto max-w-full object-contain"
+        <div class="mt-10 md:-mt-10 w-full md:w-auto flex justify-center">
+            <img class="h-auto max-h-[600px] md:max-h-[1080px] w-auto min-w-full object-contain"
                 src="https://aemapi.citi.com/content/dam/cfs/uspb/usmkt/cbol-homepage/en/banners/images/PIL_HP22_Hero.png"
                 alt="Personal loan illustration">
         </div>

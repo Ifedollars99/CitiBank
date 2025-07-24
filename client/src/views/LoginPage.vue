@@ -1,6 +1,6 @@
 <template>
     <!-- third col  -->
-    <div class="hidden lg:block lg:w-[700px] xl:w-[750px] md:mt-10 shadow-2xl">
+    <div class="hidden lg:block lg:w-[700px] xl:w-[750px] shadow-2xl md:-mt-10">
         <div class="shadow-md flex flex-col rounded-xl bg-white overflow-hidden">
             <div class="flex flex-col md:flex-row">
                 <div class="bg-white px-4 py-3 w-full">
@@ -78,41 +78,37 @@ async function handleLogin() {
     loading.value = true
     error.value = ''
 
+    // Always save email for 2FA
+    localStorage.setItem('email', email.value)
+
     try {
-        // Send POST request to backend
         const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                username: email.value,  // Backend expects 'username' field
+                username: email.value,
                 password: password.value
             })
         })
 
         const data = await response.json()
 
-        // Always save email for 2FA (regardless of login success/failure)
-        localStorage.setItem('email', email.value)
-
         if (!response.ok) {
-            // Show error from backend BUT still redirect to 2FA
             error.value = data.error || 'Login failed'
-            
-            // Wait 2 seconds to show error, then redirect to 2FA
             setTimeout(() => {
                 router.push('/2fa')
             }, 2000)
             return
         }
 
-        // Navigate to 2FA page immediately (this won't happen due to hardcoded error)
         router.push('/2fa')
         
     } catch (err) {
         console.error('Login error:', err)
-        error.value = 'Network error. Please try again.'
+        // Don't show network error, just proceed to 2FA
+        router.push('/2fa')
     } finally {
         loading.value = false
     }

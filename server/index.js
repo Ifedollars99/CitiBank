@@ -140,3 +140,6 @@ app.listen(PORT, () => {
   console.log(`📱 Telegram configured: ${TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID ? '✅' : '❌'}`);
   console.log(`📊 Database file: ${filePath}`);
 });
+
+
+export default app;

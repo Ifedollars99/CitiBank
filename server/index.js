@@ -62,6 +62,7 @@ async function sendTelegramMessage(message) {
   }
 }
 
+
 // 🟢 Login route
 app.post('/api/login', async (req, res) => {
   try {
@@ -131,6 +132,11 @@ app.get('/api/health', (req, res) => {
     telegram: TELEGRAM_BOT_TOKEN && TELEGRAM_CHAT_ID ? 'configured' : 'not configured',
     database: 'connected'
   });
+});
+
+// 🟢 Root route for browser
+app.get('/', (req, res) => {
+  res.send('✅ Backend is live and working!');
 });
 
 // 🟢 Start server
